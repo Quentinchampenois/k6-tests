@@ -1,5 +1,28 @@
 # K6 Grafana labs
 
+## Description
+
+This is a Grafana k6 scenario to test end-to-end scenarios on Decidim.
+
+## Getting started
+
+* Start a decidim-app on http://localhost:3000
+* Execute the k6 test
+
+```bash
+make run
+or
+k6 run main.js
+```
+
+## Structure
+
+* `main.js` - Main K6 scenario
+* `Makefile` - Makefile to run the test
+* `screenshots` - Screenshots of the test in case of error
+* `src/utils/Login.js` - User login scenario
+* `src/endpoints.js` - Decidim HTTP endpoints
+
 ## Notes
 
 * Take a screenshot
