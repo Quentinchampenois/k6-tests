@@ -1,4 +1,5 @@
 import Login from './src/utils/Login.js';
+import { browser } from 'k6/experimental/browser';
 
 export const options = {
     vus: 1,
@@ -20,10 +21,16 @@ export const options = {
 const baseUrl = "http://localhost:3000"
 
 export default async function() {
+    let page = await browser.newPage();
     try {
-        let login = await Login({ baseUrl: baseUrl });
-        console.log(login);
-    } catch (error) {
-        console.error("Error during login:", error);
+        try {
+            page = await Login({ baseUrl: baseUrl, page: page });
+            console.log("Promise resolved!");
+        } catch (error) {
+            console.error("Error during login:", error);
+        }
+        console.log(`User is redirected to homepage > ${page.url()}`)
+    } finally {
+        page.close()
     }
 }
