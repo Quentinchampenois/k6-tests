@@ -19,6 +19,11 @@ export const options = {
 
 const baseUrl = "http://localhost:3000"
 
-export default function() {
-    Login({ baseUrl: baseUrl });
+export default async function() {
+    try {
+        let login = await Login({ baseUrl: baseUrl });
+        console.log(login);
+    } catch (error) {
+        console.error("Error during login:", error);
+    }
 }

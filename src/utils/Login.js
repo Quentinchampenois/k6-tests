@@ -8,7 +8,7 @@ export default function Login(opts) {
     const EMAIL = `user@example.org`;
     const PASSWORD = 'decidim123456789';
 
-    describe(`Login as user ${EMAIL}`, async () => {
+    return new Promise(async (resolve, reject) => {
         const page = await browser.newPage();
 
         try {
@@ -30,10 +30,13 @@ export default function Login(opts) {
                 'User is redirected to homepage': (r) => r.url() === baseUrl + '/?locale=en',
                 'User is logged in': (r) => r.content().includes("Signed in successfully"),
             })
+
+            resolve(page)
         } catch (err) {
             console.error(err)
             const currentDate = Date.now();
             await page.screenshot({ path: `screenshots/error-${currentDate}.png` });
+            reject(err)
         } finally {
             await page.close();
         }
