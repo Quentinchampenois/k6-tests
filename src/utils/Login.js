@@ -2,13 +2,14 @@ import { check } from 'k6';
 
 export default function Login(opts) {
     const baseUrl = opts.baseUrl
+    const endpoint = opts.endpoint
     const page = opts.page
     const EMAIL = `user@example.org`;
     const PASSWORD = 'decidim123456789';
 
     return new Promise(async (resolve, reject) => {
         try {
-            await page.goto(baseUrl + '/users/sign_in');
+            await page.goto(`${baseUrl}${endpoint}`);
             console.log(`Go to > User sign_in > ${page.url()}`)
 
             const email = page.locator("#session_user_email");
