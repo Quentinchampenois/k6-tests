@@ -30,7 +30,6 @@ export default function Login(opts) {
 
             resolve(page)
         } catch (err) {
-            console.error(err)
             const currentDate = Date.now();
             await page.screenshot({ path: `screenshots/error-${currentDate}.png` });
             reject(err)

@@ -4,5 +4,6 @@ export const endpoints = {
     user: {
         sign_in: "/users/sign_in",
         sign_up: "/users/sign_up",
+        my_account: "/account"
     },
 }
